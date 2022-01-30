@@ -929,19 +929,27 @@ def wcskeys(fobj, ext=None):
 
     wkeys = set()
 
+    # Becareful about the order of key with update and add.
+
+    # check Original WCS:
+    for kwd in wcs_kwd_list:
+        alt_kwds = hdr[kwd + '?']
+        alt_keys = [key[-1].upper() for key in alt_kwds if key[-1] in 'O']
+        wkeys.update(alt_keys)
+
+    # check Alt WCS:
+    for kwd in wcs_kwd_list:
+        alt_kwds = hdr[kwd + '?']
+        alt_keys = [key[-1].upper() for key in alt_kwds if key[-1] in string.ascii_letters and key[-1] != 'O']
+        wkeys.update(alt_keys)
+
     # check primary:
     for kwd in wcs_kwd_list:
         if kwd in hdr:
             wkeys.add(' ')
             break
 
-    # check Alt WCS:
-    for kwd in wcs_kwd_list:
-        alt_kwds = hdr[kwd + '?']
-        alt_keys = [key[-1].upper() for key in alt_kwds if key[-1] in string.ascii_letters]
-        wkeys.update(alt_keys)
-
-    return sorted(wkeys)
+    return sorted(wkeys, reverse=True)
 
 
 def _alt_wcs_names(hdr, del_opus=True):

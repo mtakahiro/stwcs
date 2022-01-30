@@ -22,7 +22,7 @@ from stsci.tools import teal  # noqa
 from pkg_resources import get_distribution, DistributionNotFound
 
 try:
-    __version__ = get_distribution(__name__).version
+    __version__ = '1.7.3.TM' #get_distribution(__name__).version
 except DistributionNotFound:
     # package is not installed
     pass

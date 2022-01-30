@@ -15,7 +15,7 @@ conf.read(['setup.cfg'])
 # Get some config values
 metadata = dict(conf.items('metadata'))
 PACKAGENAME = metadata.get('package_name', 'stwcs')
-DESCRIPTION = metadata.get('description', '')
+DESCRIPTION = metadata.get('description', 'Edit made by TMORISHITA')
 AUTHOR = metadata.get('author', 'STScI')
 AUTHOR_EMAIL = metadata.get('author_email', 'help@stsci.edu')
 
